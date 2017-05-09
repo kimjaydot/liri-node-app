@@ -1,2 +1,6 @@
 const keys = require('./keys.js');
-console.log(keys);
+const command = process.argv[2];
+
+if (command === 'my-tweets'){
+    console.log(command);
+}
