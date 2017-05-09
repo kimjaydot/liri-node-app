@@ -1,8 +1,11 @@
+//reads a javascript file, executes the file, and then proceeds to return the exports object
 const keys = require('./keys.js');
 const fs = require('fs');
 const Twitter = require('twitter');
 const spotify = require('spotify');
 
+console.log(keys + 'This is working') ;
+//gets array takes my input
 const command = process.argv[2];
 
 if (command === 'my-tweets') {
