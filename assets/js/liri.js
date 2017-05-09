@@ -5,7 +5,7 @@ const command = process.argv[2];
 
 if (command === 'my-tweets') {
     const c = new Twitter(keys);
-    const p = { screen_name: 'nodejs' }
+    const p = { screen_name: 'kimjaydot' }
 
     c.get('statuses/user_timeline', p, function(error, tweets, response) {
         if (!error) {
