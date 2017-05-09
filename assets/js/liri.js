@@ -22,17 +22,41 @@ if (command === 'my-tweets') {
     });
 } else if (command === 'spotify-this-song') {
     const song = process.argv[3];
+    let searchObj = { };
 
-    if (song) {
-        return
+    if (song === undefined) {
+        fs.readFile("../../random.txt", "utf8", function (error, data) {
+            if (error) {
+                return console.error(error);
+            }
+
+            const trackName = data.split(',')[1].replace('"', '').replace('"', '');
+
+            searchObj = {
+                type: 'track',
+                query: trackName
+            };
+
+            return spotify.search(searchObj, function (err, data) {
+                if (err) {
+                    console.error(err);
+                }
+
+                console.log(data.tracks.items[0].album.artists[0]);
+            });
+        });
+    } else {
+        searchObj = {
+            type: 'track',
+            query: song
+        };
+
+        spotify.search(searchObj, function (err, data) {
+            if (err) {
+                console.error(err);
+            }
+
+            console.log(data.tracks.items[0].album.artists[0]);
+        });
     }
-
-    fs.readFile("../../random.txt", "utf8", function (error, data) {
-        if (error) {
-            return console.error(error);
-        }
-
-        // We will then print the contents of data
-        console.log(data);
-    })
 }
