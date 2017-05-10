@@ -10,7 +10,7 @@ const command = process.argv[2];
 
 if (command === 'my-tweets') {
     const client = new Twitter(keys);
-    const parameters = { screen_name: 'kimjaydot' }
+    const parameters = { screen_name: 'randomuser713' }
 
     client.get('statuses/user_timeline', parameters, function(error, tweets, response) {
         if (!error) {
