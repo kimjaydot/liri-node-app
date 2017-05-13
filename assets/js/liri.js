@@ -8,6 +8,7 @@ const spotify = require('spotify');
 //gets array takes my input
 const command = process.argv[2];
 
+//if the user runs my-tweets command it will console log 20 status
 if (command === 'my-tweets') {
     const client = new Twitter(keys);
     const parameters = { screen_name: 'randomuser713', count: 20 }
