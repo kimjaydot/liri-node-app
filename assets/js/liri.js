@@ -1,26 +1,30 @@
 //reads a javascript file, executes the file, and then proceeds to return the exports object
-const keys = require('./keys.js');
+const keys = require('./keys.js').twitterKeys;
 const fs = require('fs');
 const Twitter = require('twitter');
 const spotify = require('spotify');
 
-console.log(keys + 'This is working') ;
+console.log(JSON.stringify(keys)) ;
 //gets array takes my input
 const command = process.argv[2];
 
 if (command === 'my-tweets') {
     const client = new Twitter(keys);
-    const parameters = { screen_name: 'randomuser713' }
+    const parameters = { screen_name: 'randomuser713', count: 5 }
 
     client.get('statuses/user_timeline', parameters, function(error, tweets, response) {
-        if (!error) {
+        if (error) {
             if (!tweets.length) {
                 console.log('You have no tweets');
             }
             console.log(tweets);
+            // console.log(response);
         }
         else {
-            console.log(error)
+            // console.log(error)
+            for (var i = 0; i < tweets.length; i++){
+                console.log(JSON.stringify(tweets[i].text, null, 2));
+            }
         }
     });
 } else if (command === 'spotify-this-song') {
