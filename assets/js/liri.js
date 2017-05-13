@@ -4,13 +4,13 @@ const fs = require('fs');
 const Twitter = require('twitter');
 const spotify = require('spotify');
 
-console.log(JSON.stringify(keys)) ;
+// console.log(JSON.stringify(keys)) ;
 //gets array takes my input
 const command = process.argv[2];
 
 if (command === 'my-tweets') {
     const client = new Twitter(keys);
-    const parameters = { screen_name: 'randomuser713', count: 5 }
+    const parameters = { screen_name: 'randomuser713', count: 20 }
 
     client.get('statuses/user_timeline', parameters, function(error, tweets, response) {
         if (error) {
